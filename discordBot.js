@@ -104,6 +104,24 @@ function isDonatAllowedUser(userId) {
   return Boolean(donatAllowedUserId && String(userId) === donatAllowedUserId);
 }
 
+/** Discord не вміє "згасати" ephemeral; прибираємо відповідь вручну. */
+const REPLY_TTL_MS = 10_000;
+function deleteReplyAfter(interaction) {
+  setTimeout(() => {
+    interaction.deleteReply().catch(() => {});
+  }, REPLY_TTL_MS);
+}
+
+/** Після відправки JSON — приховати і «Готово», і вихідне повідомлення з меню. */
+function deleteSelectSuccessAndMenuAfter(interaction) {
+  setTimeout(() => {
+    interaction.deleteReply().catch(() => {});
+    if (interaction.message) {
+      interaction.message.delete().catch(() => {});
+    }
+  }, REPLY_TTL_MS);
+}
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once(Events.ClientReady, (c) => {
@@ -126,12 +144,14 @@ client.on(Events.InteractionCreate, async (interaction) => {
         content:
           "Донат вимкнено: у `.env` потрібно вказати `DONAT_ALLOWED_USER_ID` (твій Discord user id).",
       });
+      deleteReplyAfter(interaction);
       return;
     }
     if (!isDonatAllowedUser(interaction.user.id)) {
       await interaction.editReply({
         content: "Немає прав на цю команду.",
       });
+      deleteReplyAfter(interaction);
       return;
     }
 
@@ -142,6 +162,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     } catch (e) {
       const msg = e && e.message ? e.message : String(e);
       await interaction.editReply({ content: `SteamID невірний: ${msg}` });
+      deleteReplyAfter(interaction);
       return;
     }
 
@@ -153,6 +174,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       await interaction.editReply({
         content: `Не вдалося відкрити папку гравця на FTP для **${steamId}**.\nПомилка: ${msg}`,
       });
+      deleteReplyAfter(interaction);
       return;
     }
 
@@ -162,6 +184,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         content:
           "Список предметів порожній. Додай `donatItems.json` (масив items).",
       });
+      deleteReplyAfter(interaction);
       return;
     }
 
@@ -200,6 +223,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
           ephemeral: true,
           content: "Це меню не для тебе.",
         });
+        deleteReplyAfter(interaction);
         return;
       }
     }
@@ -209,6 +233,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         ephemeral: true,
         content: "Немає прав на донат.",
       });
+      deleteReplyAfter(interaction);
       return;
     }
 
@@ -221,6 +246,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       await interaction.editReply({
         content: "Не знайшов предмет у списку (можливо оновили конфіг).",
       });
+      deleteReplyAfter(interaction);
       return;
     }
 
@@ -231,6 +257,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         content:
           "Конфіг предмета неправильний: потрібен `Items` (масив) з `className`/`quantity`/`attachments`/`contains`.",
       });
+      deleteReplyAfter(interaction);
       return;
     }
     const payload = { Items: orderItems };
@@ -246,11 +273,13 @@ client.on(Events.InteractionCreate, async (interaction) => {
       await interaction.editReply({
         content: `Готово. JSON відправлено на FTP:\n**${res.remotePath}**`,
       });
+      deleteSelectSuccessAndMenuAfter(interaction);
     } catch (e) {
       const msg = e && e.message ? e.message : String(e);
       await interaction.editReply({
         content: `Не вдалося відправити JSON: ${msg}`,
       });
+      deleteReplyAfter(interaction);
     }
   }
 });
