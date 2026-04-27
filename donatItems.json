@@ -113,6 +113,37 @@
           "contains": []
         }
       ]
+    },
+    {
+      "id": "Hatchback",
+      "label": "Hatchback_02",
+      "description": "Hatchback_02",
+      "Items": [
+        {
+          "className": "Hatchback_02",
+          "isCar": 1,
+          "quantity": 1,
+          "attachments": [
+            "Hatchback_02_Wheel",
+            "Hatchback_02_Wheel",
+            "Hatchback_02_Wheel",
+            "Hatchback_02_Wheel",
+            "Hatchback_02_Wheel",
+            "Hatchback_02_Door_1_1",
+            "Hatchback_02_Door_1_2",
+            "Hatchback_02_Door_2_1",
+            "Hatchback_02_Door_2_2",
+            "Hatchback_02_Trunk",
+            "Hatchback_02_Hood",
+            "SparkPlug",
+            "CarRadiator",
+            "CarBattery",
+            "HeadlightH7",
+            "HeadlightH7"
+          ],
+          "contains": []
+        }
+      ]
     }
   ]
 }
