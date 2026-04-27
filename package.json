@@ -5,7 +5,7 @@
   "main": "index.js",
   "packageManager": "yarn@4.2.2",
   "scripts": {
-    "start": "node index.js",
+    "start": "node discordBot.js",
     "discord": "node discordBot.js",
     "register-commands": "node registerCommands.js"
   },

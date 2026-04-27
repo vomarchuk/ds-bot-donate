@@ -1,13 +1,50 @@
 {
   "items": [
     {
-      "id": "med_kit",
-      "label": "Medical Kit",
-      "description": "Бинти + морфін + салін",
+      "id": "repair_kit",
+      "label": "Набір для ремонту",
+      "description": "Чистка для зброї + Набір для шиття + Скорняк",
       "Items": [
         {
-          "className": "BandageDressing",
-          "quantity": 5,
+          "className": "LeatherSewingKit",
+          "quantity": 100,
+          "attachments": [],
+          "contains": []
+        },
+        {
+          "className": "WeaponCleaningKit",
+          "quantity": 100,
+          "attachments": [],
+          "contains": []
+        },
+        {
+          "className": "SewingKit",
+          "quantity": 100,
+          "attachments": [],
+          "contains": []
+        }
+      ]
+    },
+    {
+      "id": "med_kit",
+      "label": "Медичний набір для виживання ",
+      "description": "Зівірол + Амоксіклав + Польовий хірургічний набір",
+      "Items": [
+        {
+          "className": "TerjeSurgicalKit",
+          "quantity": 100,
+          "attachments": [],
+          "contains": []
+        },
+        {
+          "className": "TerjeInjectorAmoxiclav",
+          "quantity": 1,
+          "attachments": [],
+          "contains": []
+        },
+        {
+          "className": "TerjeInjectorZivirol",
+          "quantity": 1,
           "attachments": [],
           "contains": []
         }
@@ -64,4 +101,3 @@
     }
   ]
 }
-
