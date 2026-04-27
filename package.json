@@ -1,0 +1,17 @@
+{
+  "name": "dc-ftp-bot",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "packageManager": "yarn@4.2.2",
+  "scripts": {
+    "start": "node index.js",
+    "discord": "node discordBot.js",
+    "register-commands": "node registerCommands.js"
+  },
+  "dependencies": {
+    "basic-ftp": "^5.0.5",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "items": [
+    {
+      "id": "med_kit",
+      "label": "Medical Kit",
+      "description": "Бинти + морфін + салін",
+      "Items": [
+        {
+          "className": "BandageDressing",
+          "quantity": 5,
+          "attachments": [],
+          "contains": []
+        }
+      ]
+    },
+    {
+      "id": "starter_pack",
+      "label": "Starter Pack",
+      "description": "AKM + бинти + фляга + набої",
+      "Items": [
+        {
+          "className": "VM_WP_Rifle_AKM",
+          "quantity": 1,
+          "attachments": [
+            "AK_WoodBttstck",
+            "AK_WoodHndgrd",
+            "Mag_AKM_30Rnd",
+            "PSO1Optic"
+          ],
+          "contains": []
+        },
+        {
+          "className": "BandageDressing",
+          "quantity": 5,
+          "attachments": [],
+          "contains": []
+        },
+        {
+          "className": "Canteen",
+          "quantity": 1000,
+          "attachments": [],
+          "contains": []
+        },
+        {
+          "className": "Ammo_762x39",
+          "quantity": 40,
+          "attachments": [],
+          "contains": []
+        }
+      ]
+    },
+    {
+      "id": "ammo_762",
+      "label": "7.62x39 Ammo",
+      "description": "40 патронів 7.62x39",
+      "Items": [
+        {
+          "className": "Ammo_762x39",
+          "quantity": 40,
+          "attachments": [],
+          "contains": []
+        }
+      ]
+    }
+  ]
+}
+
