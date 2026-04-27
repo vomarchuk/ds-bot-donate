@@ -98,10 +98,21 @@ if (!token) {
   process.exit(1);
 }
 
+const donatAllowedUserId = (process.env.DONAT_ALLOWED_USER_ID || "").trim();
+
+function isDonatAllowedUser(userId) {
+  return Boolean(donatAllowedUserId && String(userId) === donatAllowedUserId);
+}
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once(Events.ClientReady, (c) => {
   console.log("Discord:", c.user.tag);
+  if (!donatAllowedUserId) {
+    console.warn(
+      "DONAT_ALLOWED_USER_ID не задано — команду /donat ніхто не зможе використати.",
+    );
+  }
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
@@ -109,6 +120,20 @@ client.on(Events.InteractionCreate, async (interaction) => {
   if (interaction.isChatInputCommand()) {
     if (interaction.commandName !== "donat") return;
     await interaction.deferReply({ ephemeral: true });
+
+    if (!donatAllowedUserId) {
+      await interaction.editReply({
+        content:
+          "Донат вимкнено: у `.env` потрібно вказати `DONAT_ALLOWED_USER_ID` (твій Discord user id).",
+      });
+      return;
+    }
+    if (!isDonatAllowedUser(interaction.user.id)) {
+      await interaction.editReply({
+        content: "Немає прав на цю команду.",
+      });
+      return;
+    }
 
     const steamRaw = interaction.options.getString("steam_id", true);
     let steamId;
@@ -177,6 +202,14 @@ client.on(Events.InteractionCreate, async (interaction) => {
         });
         return;
       }
+    }
+
+    if (!donatAllowedUserId || !isDonatAllowedUser(interaction.user.id)) {
+      await interaction.reply({
+        ephemeral: true,
+        content: "Немає прав на донат.",
+      });
+      return;
     }
 
     await interaction.deferReply({ ephemeral: true });
