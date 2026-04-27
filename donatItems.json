@@ -87,13 +87,28 @@
       ]
     },
     {
-      "id": "ammo_762",
-      "label": "7.62x39 Ammo",
-      "description": "40 патронів 7.62x39",
+      "id": "tachi",
+      "label": "Тачі",
+      "description": "Tachi",
       "Items": [
         {
-          "className": "Ammo_762x39",
-          "quantity": 40,
+          "className": "SLCTachiSheath",
+          "quantity": 1,
+          "attachments": [
+            "SLC_Tachi"
+          ],
+          "contains": []
+        }
+      ]
+    },
+    {
+      "id": "chaotic",
+      "label": "Кровожер",
+      "description": "Кровожер",
+      "Items": [
+        {
+          "className": "VM_TacticKnife_Chaotic",
+          "quantity": 1,
           "attachments": [],
           "contains": []
         }
