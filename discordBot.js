@@ -13,7 +13,7 @@ const {
 const path = require("path");
 const fs = require("fs");
 const {
-  listKiwiDonatForSteam,
+  ensureKiwiDonatForSteam,
   normalizeSteamId64,
   getKiwiDonatRootPath,
   uploadBufferToFtp,
@@ -167,12 +167,11 @@ client.on(Events.InteractionCreate, async (interaction) => {
     }
 
     try {
-      // Validate that player folder exists / accessible
-      await listKiwiDonatForSteam(steamId);
+      await ensureKiwiDonatForSteam(steamId);
     } catch (e) {
       const msg = e && e.message ? e.message : String(e);
       await interaction.editReply({
-        content: `Не вдалося відкрити папку гравця на FTP для **${steamId}**.\nПомилка: ${msg}`,
+        content: `Не вдалося створити/відкрити папку гравця на FTP для **${steamId}**.\nПомилка: ${msg}`,
       });
       deleteReplyAfter(interaction);
       return;

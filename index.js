@@ -6,6 +6,7 @@ const {
   getLsDefaultPath,
   withFtpClient,
   listRemoteDirectory,
+  ensureKiwiDonatForSteam,
   listKiwiDonatForSteam,
 } = require(path.join(__dirname, "lib", "ftpClient"));
 
@@ -44,6 +45,7 @@ async function main() {
       console.error("node index.js donat <Steam64>");
       process.exit(1);
     }
+    await ensureKiwiDonatForSteam(sid);
     const { path: listedPath, items } = await listKiwiDonatForSteam(sid);
     console.log(`\n${listedPath}\n`);
     const w = Math.max(...items.map((i) => i.name.length), 4);
@@ -99,5 +101,6 @@ module.exports = {
   getLsDefaultPath,
   withFtpClient,
   listRemoteDirectory,
+  ensureKiwiDonatForSteam,
   listKiwiDonatForSteam,
 };
