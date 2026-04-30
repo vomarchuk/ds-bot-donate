@@ -82,6 +82,12 @@ function normalizeOrderItems(items) {
   if (!Array.isArray(items) || items.length === 0) return null;
   return items.map((it) => ({
     className: String(it.className || "").trim(),
+    isCar:
+      typeof it.isCar === "boolean"
+        ? it.isCar
+        : Number.isFinite(Number(it.isCar))
+          ? Number(it.isCar)
+          : undefined,
     quantity: Number.isFinite(Number(it.quantity))
       ? Math.max(1, Math.floor(Number(it.quantity)))
       : 1,
