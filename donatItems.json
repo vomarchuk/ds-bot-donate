@@ -143,6 +143,39 @@
           "contains": []
         }
       ]
+    },
+    {
+      "id": "Brabus_Crawler_Edition",
+      "label": "Brabus Crawler Edition",
+      "description": "Brabus Crawler Edition",
+      "Items": [
+        {
+          "className": "FC_Brabus_Crawler",
+          "isCar": 1,
+          "quantity": 1,
+          "attachments": [
+            "FC_Brabus_Crawler_Wheel",
+            "FC_Brabus_Crawler_Wheel",
+            "FC_Brabus_Crawler_Wheel",
+            "FC_Brabus_Crawler_Wheel",
+            "FC_Brabus_Crawler_Wheel",
+            "FC_Brabus_Crawler_Door_Driver",
+            "FC_Brabus_Crawler_Door_CoDriver",
+            "FC_Brabus_Crawler_Door_Cargo1",
+            "FC_Brabus_Crawler_Door_Cargo2",
+            "FC_Brabus_Crawler_Door_Hood",
+            "SparkPlug",
+            "CarRadiator",
+            "CarBattery",
+            "HeadlightH7",
+            "HeadlightH7",
+            "FC_Water_Canister",
+            "FC_ContainerM_Red",
+            "FC_ContainerM_Red"
+          ],
+          "contains": []
+        }
+      ]
     }
   ]
 }
